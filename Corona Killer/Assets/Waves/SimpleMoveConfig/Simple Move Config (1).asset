@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83bc3e023f3185f658b7ec9d7bdd9b46, type: 3}
+  m_Name: Simple Move Config (1)
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 3397034723507744279, guid: a9611bad603f9525ea8f55c0a938dd38,
+    type: 3}
+  randomMinX: -5
+  randomMaxX: 5
+  startY: 8.4
+  endY: -10
+  speed: 0.05
+  timeBetweenSpawns: 0.8
+  minScore: -1
