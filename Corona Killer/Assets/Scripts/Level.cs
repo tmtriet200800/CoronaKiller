@@ -7,6 +7,7 @@ public class Level : MonoBehaviour {
 
     [SerializeField] float delayInSeconds = 2f;
     [SerializeField] int nextLevelScore = 2000;
+    [SerializeField] GameObject End;
 
     bool nextLevel = false;
 
@@ -17,9 +18,10 @@ public class Level : MonoBehaviour {
     }
 
     void Update(){
-        if(FindObjectOfType<GameSession>().GetNextLevel() == true){
+        if(gameSession.GetNextLevel() == true){
             Enemy[] enemyCounter = FindObjectsOfType<Enemy>();
             if (enemyCounter.Length == 0 ){
+                End.SetActive(true);
                 LoadNextLevel();
             };
 

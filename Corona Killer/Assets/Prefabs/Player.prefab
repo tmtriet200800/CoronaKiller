@@ -96,14 +96,12 @@ MonoBehaviour:
   moveSpeed: 10
   padding: 1
   health: 500
-  deathSound: {fileID: 8300000, guid: 1171c0be60d3b424fa65ced509c06137, type: 3}
-  deathSoundVolume: 0
   shootSound: {fileID: 8300000, guid: 94bc90e37305b6c4caab339020eea82b, type: 3}
   shootSoundVolume: 0.231
   laserPrefab: {fileID: 1797781102741976, guid: 776551dee4edd2648be43b2d98be4e4d,
     type: 3}
-  projectileSpeed: 20
-  projectileFiringPeriod: 0.2
+  shootSpeed: 10
+  shootPeriod: 0.3
 --- !u!60 &60935502408411400
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -18,7 +18,6 @@ public class Shredder : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other)
     {
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
-
         if(enemy){
             player.EnemyGoInHouseDamage();
             AudioSource.PlayClipAtPoint(enemyGoToHouse, Camera.main.transform.position, enemyGoToHouseVolume);

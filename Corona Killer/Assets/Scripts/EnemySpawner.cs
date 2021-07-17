@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour {
 
     [SerializeField] List<PathMoveConfig> pathMoveConfigs;
+    [SerializeField] List<HeartConfig> HeartConfigs;
     [SerializeField] List<SimpleMoveConfig> simpleMoveConfigs;
     [SerializeField] int startingPath = 0;
     [SerializeField] int startingEnemy = 0;
+    [SerializeField] int startingHeart = 0;
     [SerializeField] bool looping = false;
 
     [SerializeField] GameObject superLaserPrefab;
@@ -50,7 +52,7 @@ public class EnemySpawner : MonoBehaviour {
     {
         gameSession = FindObjectOfType<GameSession>();
         timeRemaining = superLaserPeriodTime;
-
+        StartCoroutine(SpawnHeart());
         do
         {
             yield return StartCoroutine(SpawEnemy());
@@ -61,7 +63,42 @@ public class EnemySpawner : MonoBehaviour {
     public void DestroySelf(){
         Destroy(gameObject);
     }
-	
+	private IEnumerator SpawnHeart()
+	{
+
+        for (int heartIndex = startingHeart; heartIndex < HeartConfigs.Count; heartIndex++)
+        {
+            HeartConfig heartConfig = HeartConfigs[heartIndex];
+
+            while (gameSession.GetScore() > heartConfig.GetMinScore())
+            {
+                yield return new WaitForSeconds(HeartConfigs[heartIndex].GetTimeBetweenSpawns());
+                Vector3 randomStart = HeartConfigs[heartIndex].GetRandomStart();
+                var newHeart = Instantiate(
+                    HeartConfigs[heartIndex].GetHeartPrefab(),
+                    randomStart,
+                    Quaternion.identity
+                );
+                newHeart.GetComponent<HeartMove>().SetStartPoint(randomStart);
+                newHeart.GetComponent<HeartMove>().SetHeartConfig(HeartConfigs[heartIndex]);
+            }
+        }
+    }
+
+    private IEnumerator SpawnHeart(HeartConfig HeartConfig){
+        Vector3 randomStart = HeartConfig.GetRandomStart();
+
+        var newHeart = Instantiate(
+            HeartConfig.GetHeartPrefab(),
+            randomStart,
+            Quaternion.identity
+        );
+        newHeart.GetComponent<HeartMove>().SetStartPoint(randomStart);
+        newHeart.GetComponent<HeartMove>().SetHeartConfig(HeartConfig);
+
+        yield return new WaitForSeconds(HeartConfig.GetTimeBetweenSpawns());
+    }
+
     private IEnumerator SpawEnemy()
     {
         for (int simpleIndex = startingPath; simpleIndex < simpleMoveConfigs.Count; simpleIndex++)
@@ -77,12 +114,13 @@ public class EnemySpawner : MonoBehaviour {
         {
             PathMoveConfig pathMoveConfig = pathMoveConfigs[pathIndex];
 
-            if(gameSession.GetScore() > pathMoveConfig.GetMinScore()){
+            if (gameSession.GetScore() > pathMoveConfig.GetMinScore())
+            {
                 yield return StartCoroutine(SpawnAllPathEnemies(pathMoveConfigs[pathIndex]));
             }
         }
 
-        if(shootLaser && haveSuperLaser){
+        if (shootLaser && haveSuperLaser){
             var newWarningZone = Instantiate(
                 warningZone,
                 new Vector3(Random.Range(superLaserMinX, superLaserMaxX),Random.Range(superLaserMinY, superLaserMaxY), 0f),
@@ -125,6 +163,8 @@ public class EnemySpawner : MonoBehaviour {
 
         yield return new WaitForSeconds(simpleMoveConfig.GetTimeBetweenSpawns());
     }
+    
+    
 
     private IEnumerator SpawnAllPathEnemies(PathMoveConfig pathMoveConfig)
     {

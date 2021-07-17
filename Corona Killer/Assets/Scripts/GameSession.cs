@@ -15,7 +15,7 @@ public class GameSession : MonoBehaviour {
     }
 
     void Update(){
-        Debug.Log("session " + currentLevel);
+    
     }
 
     private void SetUpSingleton()
@@ -42,8 +42,7 @@ public class GameSession : MonoBehaviour {
     }
 
     public void SetNextLevel(bool nextLevel){
-        nextLevel = nextLevel;
-        Debug.Log("CAHNNNNNGEEEE " + nextLevel);
+        this.nextLevel = nextLevel;
     }
 
     public bool GetNextLevel(){
@@ -51,7 +50,6 @@ public class GameSession : MonoBehaviour {
     }
 
     public int GetCurrentLevel(){
-        // Debug.Log("current level " + currentLevel);
         return currentLevel;
     }
 

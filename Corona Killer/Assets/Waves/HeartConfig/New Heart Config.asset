@@ -9,15 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83bc3e023f3185f658b7ec9d7bdd9b46, type: 3}
-  m_Name: Simple Move Config (2)
+  m_Script: {fileID: 11500000, guid: cb1043e39ce1788459d6fa6b9ca0c1b1, type: 3}
+  m_Name: New Heart Config
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6723022126488087504, guid: 6e4c12b55034d85a78723800e0a9c505,
+  HeartPrefab: {fileID: 3397034723507744279, guid: 56ecd0cd53e5d884eb776d45e63d7302,
     type: 3}
   randomMinX: -5
   randomMaxX: 5
   startY: 8.4
   endY: -10
-  speed: 0.1
-  timeBetweenSpawns: 2
-  minScore: 3000
+  speed: 0.05
+  minScore: -1
