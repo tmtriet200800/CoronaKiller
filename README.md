@@ -3,7 +3,8 @@
 Student Information \
 18125031 Trần Minh Triết \
 18125058 Vũ Thế Vinh \
-18125088 Nguyễn Lê Thanh Khiết 
+18125088 Nguyễn Lê Thanh Khiết \
+18125116 Trần Anh Tuấn
 
 If you are bored with the COVID-19 season but want to find a game to entertain, here we introduce you to a game called Corona killer. 
 
